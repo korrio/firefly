@@ -1,5 +1,6 @@
 import React from 'react'
 import { FirestoreCollection } from 'react-firestore'
+import renderHTML from 'react-render-html';
 
 import Error from '../misc/Error'
 import FirebaseAuth from '../misc/FirebaseAuth'
@@ -11,13 +12,13 @@ import {
   Page,
 } from '../../styles/layout'
 
-const Post = ({match}) => (
+const Post = ({ match }) => (
   <Page>
     <FirestoreCollection
       path={'posts'}
       filter={['slug', '==', match.params.slug]}
     >
-      { ({error, isLoading, data}) => {
+      {({ error, isLoading, data }) => {
         if (error) {
           return <Error error={error} />
         }
@@ -34,16 +35,17 @@ const Post = ({match}) => (
 
         return <div>
           <h1>{post.title}</h1>
-          <p>
+          <p class="none">
             {post._likeCount || 0}
             {' '}
             {post._likeCount && post._likeCount === 1 ? 'like' : 'likes'}
             {' '}
             <LikeButton post={post} />
           </p>
-          <p>{post.content}</p>
+          <p>{renderHTML(post.content)}</p>
+
           <FirebaseAuth>
-            { ({auth}) => (
+            {({ auth }) => (
               auth ? <InternalLink to={`/${post.slug}/edit`}>Edit</InternalLink> : null
             )}
           </FirebaseAuth>

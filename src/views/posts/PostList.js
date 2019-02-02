@@ -13,12 +13,12 @@ import {
 const PostList = () => (
   <Page>
     <InternalLink to="/new">New post</InternalLink>
-    <hr/>
+    <hr />
     <FirestoreCollection
       path={'posts'}
       sort="_likeCount:desc"
     >
-      { ({error, isLoading, data}) => {
+      {({ error, isLoading, data }) => {
 
         if (error) {
           return <Error error={error} />
@@ -49,10 +49,10 @@ const PostList = () => (
     </FirestoreCollection>
 
     <hr />
-    
+
     {/* For paid subscribers only */}
     <FireflySubscription>
-      { ({isLoading, error, subscription}) => {
+      {({ isLoading, error, subscription }) => {
 
         if (error) {
           return <Error error={error} />
@@ -63,7 +63,7 @@ const PostList = () => (
         }
 
         if (!subscription) {
-          return <div>
+          return <div class="none">
             <p>Only paid subscribers can see what goes here</p>
             <InternalLink to={`/account`}>Subscribe now</InternalLink>
           </div>

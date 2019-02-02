@@ -14,6 +14,7 @@ const TextInput = styled.input`
   font-size: 16px;
   border: 1px solid #ddd;
   margin: 0 0 1rem;
+  width: 100%
 `
 const TextArea = styled.textarea`
   padding: .5rem;
@@ -21,6 +22,8 @@ const TextArea = styled.textarea`
   font-size: 16px;
   border: 1px solid #ddd;
   margin: 0 0 1rem;
+  width: 100%;
+  height: 200px;
 `
 
 export {

@@ -14,19 +14,19 @@ import {
   HeaderLink,
 } from '../../styles/links'
 
-const Layout = ({children}) => (
+const Layout = ({ children }) => (
   <HeaderFooterWrapper>
 
     <Header>
-      <HeaderLink to="/">Firefly</HeaderLink>
+      <HeaderLink to="/">การ์ตูน โปรเน็ต (CartoonProNet)</HeaderLink>
 
-      <div style={{float: 'right'}}>
+      <div style={{ float: 'right' }}>
         <HeaderLink to="/search">
-          <span role="img" aria-label="search">🔎</span>
+          <span class="none" role="img" aria-label="search">🔎</span>
         </HeaderLink>
         {' '}
         <FirebaseAuth>
-          { ({isLoading, error, auth}) => {
+          {({ isLoading, error, auth }) => {
             if (isLoading) {
               return '...'
             }
@@ -48,7 +48,7 @@ const Layout = ({children}) => (
     {children}
 
     <Footer>
-      © {(new Date()).getFullYear()}
+      © {(new Date()).getFullYear()} การ์ตูนโฟน
     </Footer>
 
   </HeaderFooterWrapper>

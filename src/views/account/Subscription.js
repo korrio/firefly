@@ -10,16 +10,16 @@ class Subscription extends React.Component {
 
   // https://stripe.com/docs/checkout#integration-custom
   componentDidMount() {
-    this.stripeCheckout = window.StripeCheckout.configure({
-      key: process.env.REACT_APP_STRIPE_PUBLIC_KEY,
-      locale: 'auto',
-      image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
-      name: 'Firefly',
-      description: 'Subscribe to Firefly',
-      email: this.props.auth.email,
-      allowRememberMe: false,
-      amount: 20 * 100, // in cents
-    })
+    // this.stripeCheckout = window.StripeCheckout.configure({
+    //   key: process.env.REACT_APP_STRIPE_PUBLIC_KEY,
+    //   locale: 'auto',
+    //   image: 'https://stripe.com/img/documentation/checkout/marketplace.png',
+    //   name: 'Firefly',
+    //   description: 'Subscribe to Firefly',
+    //   email: this.props.auth.email,
+    //   allowRememberMe: false,
+    //   amount: 20 * 100, // in cents
+    // })
   }
 
   newSubscription = () => {
@@ -40,8 +40,8 @@ class Subscription extends React.Component {
 
   render() {
     return <FireflySubscription>
-      { ({error, isLoading, subscription}) => {
-        
+      {({ error, isLoading, subscription }) => {
+
         if (error) {
           return <Error error={error} />
         }
@@ -51,17 +51,17 @@ class Subscription extends React.Component {
         }
 
         if (!subscription) {
-          return <div>
+          return <div class="none">
             <p><strong>Subscribe to get paid features</strong></p>
-            <p>Use Stripe test card number <span style={{fontFamily: 'monospace'}}>4242 4242 4242 4242</span>, any pin, and any future expiration date</p>
+            <p>Use Stripe test card number <span style={{ fontFamily: 'monospace' }}>4242 4242 4242 4242</span>, any pin, and any future expiration date</p>
             <button onClick={this.newSubscription}>Subscribe now</button>
           </div>
         }
 
         if (subscription.stripeSubscriptionError) {
-          return <div style={{color: 'red'}}>
+          return <div style={{ color: 'red' }}>
             <p>Whoops&mdash;there was an error updating your subscription.</p>
-            <p style={{fontFamily: 'monospace'}}>{subscription.stripeSubscriptionError}</p>
+            <p style={{ fontFamily: 'monospace' }}>{subscription.stripeSubscriptionError}</p>
             <button onClick={() => deleteSubscription(subscription)}>Delete and try again</button>
           </div>
         }
