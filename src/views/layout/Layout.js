@@ -18,7 +18,7 @@ const Layout = ({ children }) => (
   <HeaderFooterWrapper>
 
     <Header>
-      <HeaderLink to="/">การ์ตูน โปรเน็ต (CartoonProNet)</HeaderLink>
+      <HeaderLink to="/">การ์ตูน โปรเน็ต (CartoonProNet) -- เติมเงิน</HeaderLink>
 
       <div style={{ float: 'right' }}>
         <HeaderLink to="/search">
